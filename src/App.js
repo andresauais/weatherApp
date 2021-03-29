@@ -17,33 +17,34 @@ function App() {
   const dispatch = useDispatch();
   const getWeatherInfoAction = (city) => dispatch(fetchWeather(city));
 
+  const weather = weatherSelector.weatherinfo;
+  let details = "";
+
   useEffect(()=>{
     getWeatherInfoAction("");
   },[])
 
   const getWeatherInfo = (e) =>{
     e.preventDefault();
-    if(city=== ""){
-      console.log("no city")
+    if(city === ""){
+      getWeatherInfoAction("");
     }
     else{
       getWeatherInfoAction(city);
-      console.log(weatherSelector);
     }
   }
-
-  let details = "";
-  if(weatherSelector.weatherinfo && weatherSelector.weatherinfo.hasOwnProperty("location")){
+  
+  
+  if(weather && weather.hasOwnProperty("location")){
     details = <div>
                 <h4>Weather Details</h4>
                 <p>
-                  {weatherSelector.weatherinfo.location.name},
-                  <span> {weatherSelector.weatherinfo.location.country}</span>
+                  {weather.location.name},
+                  <span> {weather.location.country}</span>
                 </p>
-                <p>{weatherSelector.weatherinfo.current.temperature}ºC</p>
-                <img src={weatherSelector.weatherinfo.current.weather_icons} />
-                <p>{weatherSelector.weatherinfo.current.weather_descriptions}</p>
-
+                <p>{weather.current.temperature}ºC</p>
+                <img src={weather.current.weather_icons} />
+                <p>{weather.current.weather_descriptions}</p>
               </div>
   }
   else{
