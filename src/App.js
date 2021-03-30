@@ -1,13 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 //import actions
 import {fetchWeather} from './actions/fetchWeather'
-
-//import the provider
-import {Provider} from "react-redux";
 
 function App() {
   //set city
@@ -43,7 +39,7 @@ function App() {
                   <span> {weather.location.country}</span>
                 </p>
                 <p>{weather.current.temperature}ºC</p>
-                <img src={weather.current.weather_icons} />
+                <img src={weather.current.weather_icons} alt="weather-logo" />
                 <p>{weather.current.weather_descriptions}</p>
               </div>
   }
